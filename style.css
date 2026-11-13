@@ -1,0 +1,29 @@
+:root { --bg:#14161a; --card:#1f2228; --fg:#f2f2f2; --muted:#9aa1ad; --accent:#4f8cff; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif; }
+main { max-width: 900px; margin: 0 auto; padding: 12px 12px 32px; }
+h1 { font-size: 1.2rem; margin: 8px 0 12px; }
+.frame { position: relative; width: min(100%, calc(70vh * var(--ar, 1.3333))); aspect-ratio: var(--ar, 1.3333); margin: 0 auto; background:#000; border-radius: 14px; overflow: hidden; }
+.stage { position:absolute; inset:0; }
+.stage.mirror { transform: scaleX(-1); }
+.stage canvas { position:absolute; inset:0; width:100%; height:100%; display:block; }
+.overlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; padding:16px; color:var(--muted); pointer-events:none; }
+.overlay.hidden { display:none; }
+.row { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+button, select { font: inherit; border-radius: 10px; border: 1px solid #343a44; background: var(--card); color: var(--fg); padding: 10px 14px; }
+button.primary { background: var(--accent); border-color: var(--accent); color:#fff; font-weight:600; }
+button:disabled { opacity:.5; }
+input[type=color] { width:44px; height:42px; padding:2px; border-radius:10px; border:1px solid #343a44; background:var(--card); }
+.panel { background:var(--card); border-radius:14px; padding:12px; margin-top:12px; }
+.sliders { display:grid; grid-template-columns: 1fr; gap:10px; }
+@media (min-width:640px){ .sliders { grid-template-columns: repeat(3,1fr);} }
+label { display:block; font-size:.85rem; color:var(--muted); }
+input[type=range] { width:100%; }
+.stats { display:grid; grid-template-columns: repeat(2,1fr); gap:8px; font-variant-numeric: tabular-nums; }
+.stats div { background:#181b20; border-radius:10px; padding:8px 10px; }
+.stats b { display:block; font-size:1.05rem; color:var(--fg); }
+.stats span { font-size:.78rem; color:var(--muted); }
+#status { color:var(--muted); font-size:.9rem; margin-top:8px; min-height:1.2em; }
+small { color:var(--muted); }
+
+#cam { position:absolute; width:1px; height:1px; opacity:0; pointer-events:none; }

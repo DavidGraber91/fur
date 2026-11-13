@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>מדידת כובע</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>מדידת כובע על הראש</h1>
+
+  <div class="frame" id="frame">
+    <div class="stage mirror" id="stage">
+      <canvas id="out" width="640" height="480"></canvas>
+      <canvas id="gl" width="640" height="480"></canvas>
+    </div>
+    <div id="overlay" class="overlay">לחץ על "הפעל מצלמה" והסתכל אל המסך</div>
+  </div>
+  <video id="cam" playsinline muted></video>
+
+  <div class="row">
+    <button id="start" class="primary">הפעל מצלמה</button>
+    <button id="flip" disabled>החלף מצלמה</button>
+    <select id="hatType" aria-label="סוג כובע">
+      <option value="fur">שטריימל</option>
+      <option value="top">צילינדר</option>
+      <option value="fedora">פדורה</option>
+      <option value="beanie">כובע צמר</option>
+    </select>
+    <input id="hatColor" type="color" value="#23242a" aria-label="צבע כובע">
+    <input id="file" type="file" accept="video/*">
+  </div>
+
+  <div class="panel">
+    <div class="sliders">
+      <div><label>רוחב הכובע ביחס לראש: <span id="vW"></span></label>
+        <input id="sW" type="range" min="0.8" max="3.5" step="0.01" value="1.08"></div>
+      <div><label>גובה הכובע: <span id="vH"></span></label>
+        <input id="sH" type="range" min="0.5" max="1.8" step="0.01" value="1"></div>
+      <div><label>גובה ההנחה על הראש: <span id="vO"></span></label>
+        <input id="sO" type="range" min="-0.25" max="0.4" step="0.01" value="0.10"></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="stats">
+      <div><b id="stFacePx">–</b><span>רוחב פנים (פיקסלים)</span></div>
+      <div><b id="stFaceCm">–</b><span>רוחב פנים משוער (ס"מ)</span></div>
+      <div><b id="stHatPx">–</b><span>רוחב הכובע (פיקסלים)</span></div>
+      <div><b id="stRatio">–</b><span>גובה הכובע ביחס לרוחב הראש</span></div>
+      <div><b id="stYaw">–</b><span>פנייה ימינה/שמאלה (מעלות)</span></div>
+      <div><b id="stPitch">–</b><span>שיפוע מעלה/מטה (מעלות)</span></div>
+    </div>
+    <div id="status"></div>
+    <small>הערכת הסנטימטרים מבוססת על קוטר הקשתית (כ-11.7 מ"מ) ולכן מדויקת רק כשהפנים מול המצלמה. זה רוחב פנים ולא היקף ראש.</small>
+  </div>
+</main>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
